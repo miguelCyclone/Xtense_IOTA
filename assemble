@@ -118,13 +118,6 @@ dotnet restore "$DOTNET_STARTUP_PROJECT" $RESTORE_OPTIONS $VERBOSITY_OPTION
 echo "---> Publishing application..."
 dotnet publish "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION" $VERBOSITY_OPTION \
        --self-contained false /p:PublishWithAspNetCoreTargetManifest=$DOTNET_ASPNET_STORE -o "$DOTNET_APP_PATH"
-/*
-# check if the assembly used by the script exists
-if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
-  echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
-  exit 1
-fi
-*/
 
 # Create run script in publish folder
 cat << EOF >"$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
