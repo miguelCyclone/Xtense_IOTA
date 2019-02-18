@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Xtense.html</title>
+	<style>
+	.button {
+        background-color: #00001a;
+		color: white;
+		margin: 4px 2px;
+		font-size: 16px;
+		border-radius: 8px;
+		opacity: 0.6;
+	}
+	
+	body  {
+	    background-image: url("backImage.jpg");
+	}
+	
+	.footer {
+	   position: fixed;
+	   left: 0;
+	   bottom: 0;
+	   width: 100%;
+	   height: 10%;
+	   color: black;
+	   text-align: center;
+	   z-index: -1;
+	   margin: 9px 0px;
+    }
+	
+	.header {
+	   position: fixed;
+	   left: 0;
+	   top: 0;
+	   width: 100%;
+	   height: 20%;
+	   color: black;
+	   text-align: center;
+	   z-index: -1;
+	   margin: 7px 0px;
+    }
+	
+	.par {
+        background-color: #ffffff;
+		color: black;
+		width: 45%;
+	}
+	
+	#grad {
+	  background-image: linear-gradient(-45deg, #000000, #333333, #666666, #999999, #bfbfbf, #cccccc, #ffffff);
+	}
+	#grad2 {
+	  background-image: linear-gradient(-45deg, #bfbfbf, #cccccc, #ffffff, #ffffff);
+	}
+	
+	.dev {
+	   background-color: #000000;
+	   color: white;
+	   resize: none;
+	}
+	
+	#loadingDiv{
+  position:fixed;
+  top:0px;
+  right:0px;
+  width:100%;
+  height:100%;
+  background-image:url('loader3.gif');
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index:10000000;
+  display:none;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+  }
+  
+  	#loadingDiv2{
+  position:fixed;
+  top:0px;
+  right:0px;
+  width:100%;
+  height:100%;
+  background-image:url('loader4.gif');
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index:10000000;
+  display:none;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+  }
+    </style>
+  </head>
+  <body>
+  <a href="https://www.xtense.io" target="_blank">
+     <img src="Xtense-logo-main-dark.png" alt "Xtense" width="500" height="150">
+  </a>
+  
+  <img id="musa" src="musa.jpg" alt "Musa de oro" IMG STYLE="position:absolute; TOP:100px; LEFT:850px;display:none" >
+  <img id="noche" src="noche.jpg" alt "Noche estrellada" IMG STYLE="position:absolute; TOP:200px; LEFT:850px; WIDTH:650px; HEIGHT:380px; display:none" >
+  <img id="lirios" src="lirios.jpg" alt "Lirios" IMG STYLE="position:absolute; TOP:175px; LEFT:850px;WIDTH:750px; HEIGHT:420px; display:none" >
+  <img id="maja" src="maja.jpg" alt "La maja vestida" IMG STYLE="position:absolute; TOP:250px; LEFT:850px; display:none" >  
+  
+  <h3 class="par">PoC run in IOTA devnet NOT mainet - NOT "real" IOTAs are been transferred</h3>
+  <h5 class="par">All rights reserved - Copyright © 2019 Xtense</h5>
+  <p class="par">FIRST: Select an action to perform from the list: "Choose a function" <br>
+SECOND: Select an object(s) from the lists to be performed<br>
+Open browser terminal to obtain live info (ctrl + shft + j)</p><br>
+<form name="demoForm" >
+<select name="function" size=9 onchange="run()">
+   <option selected value="0"> Choose a function </option>
+       <optgroup label="Read"> 
+       <option value="1">User global balance</option> 
+       <option value="2">Verify asset shares in circulation </option> 
+       <option value="3">Asset shares distribution</option> 
+   </optgroup> 
+   <optgroup label="Write"> 
+       <option value="6">Transfer shares</option> 
+   </optgroup>   
+</select>
+
+<textarea id ="Output_message" class="dev" rows="10" cols="60" readonly>When making transfers, before checking it here or in devnet explorer, give time to the network to validate it</textarea><br><br>
+
+<select name="TxList" size=6 onchange="run()">
+   <option selected value="0"> User sender </option>
+       <option value="AAA">Alice</option> 
+       <option value="BBB">Bob</option> 
+       <option value="CCC">Charlie</option> 
+	   <option value="DDD">Evie</option>  
+</select>
+<select name="RxList" size=6 onchange="run()">
+   <option selected value="0"> User receiver </option>
+       <option value="AAA">Alice</option> 
+       <option value="BBB">Bob</option> 
+       <option value="CCC">Charlie</option> 
+	   <option value="DDD">Evie</option> 	     
+</select>
+<select name="Paintings" size=6 onchange="run()">
+   <option selected value="0"> Paintings </option>
+       <option value="GGG">"Musa de oro" </option> 
+       <option value="HHH">"La noche estrellada"</option> 
+       <option value="III">"Lirios"</option> 
+       <option value="ZZZ">"La maja vestida"</option> 	    
+</select>
+<select name="Shares" size=6 onchange="run()">
+   <option selected value="0"> Amount </option>
+       <option value="1">1 </option> 
+       <option value="10">10 </option> 
+       <option value="100">100 </option> 
+       <option value="1000">1000 </option> 	    
+</select>
+  
+</form>
+  <button  id ="button"class="button" onclick="action()">Click me!</button><br>
+  
+  <a href="https://www.iota.org" target="_blank">
+     <img src="Iota_logo.png" alt "Iota" width="180" height="60">
+  </a>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://www.ien.io" target="_blank">
+     <img src="IEN.png" alt "IEN" width="140" height="70">
+  </a>
+<div id="loadingDiv"></div>  
+<div id="loadingDiv2"></div>  
+<div id="grad" class="footer"></div>
+<div id="grad2" class="header"></div>
+
+	<script type="text/javascript" language="JavaScript" src="bundle.js"></script>
+    <script>
+	//All rights reserved - Copyright © 2019 Xtense
+	var xtsFunction = -1;
+	var xtsUserTx = -1;
+	var xtsUserRx = -1;
+	var xtsAsset = -1;
+	var xtsShares = -1;
+	var users = xts.userArray;
+	var assets = xts.assetArray;
+	var noMultipleClick = 1;
+	
+	const initialized = async () => {
+	      document.getElementById("loadingDiv2").style.display = "block";
+	      noMultipleClick = 0;
+	      window.alert("Initialzinf MAM roots click to start, please be patient...");
+	      await xts.init();
+		  document.getElementById('button').style.opacity=1;
+		  noMultipleClick = 1;
+		  document.getElementById("loadingDiv2").style.display = "none";
+		  window.alert("Done! :)");
+	}
+	window.onload = initialized();
+	
+    function run() {
+        xtsFunction = demoForm.function;
+		xtsUserTx = demoForm.TxList;
+		xtsUserRx = demoForm.RxList;
+		xtsAsset = demoForm.Paintings;
+		xtsShares = demoForm.Shares;
+		
+		if(xtsAsset[xtsAsset.selectedIndex].value == "GGG"){
+		   document.getElementById("musa").style.display = "block";
+		   document.getElementById("noche").style.display = "none";
+		   document.getElementById("lirios").style.display = "none";
+		   document.getElementById("maja").style.display = "none";
+		}
+		if(xtsAsset[xtsAsset.selectedIndex].value == "HHH"){
+		   document.getElementById("musa").style.display = "none";
+		   document.getElementById("noche").style.display = "block";
+		   document.getElementById("lirios").style.display = "none";
+		   document.getElementById("maja").style.display = "none";
+		}
+		if(xtsAsset[xtsAsset.selectedIndex].value == "III"){
+		   document.getElementById("musa").style.display = "none";
+		   document.getElementById("noche").style.display = "none";
+		   document.getElementById("lirios").style.display = "block";
+		   document.getElementById("maja").style.display = "none";
+		}
+		if(xtsAsset[xtsAsset.selectedIndex].value == "ZZZ"){
+		   document.getElementById("musa").style.display = "none";
+		   document.getElementById("noche").style.display = "none";
+		   document.getElementById("lirios").style.display = "none";
+		   document.getElementById("maja").style.display = "block";
+		}
+    }
+
+	const action = async () => {
+	  try{
+	  if(noMultipleClick == 1){
+	  document.getElementById('button').style.opacity=0.6;
+		noMultipleClick = 0;
+		var text = document.getElementById('Output_message');
+	    switch (xtsFunction.selectedIndex){
+		    case 0:
+			   noMultipleClick = 1;
+			   document.getElementById('button').style.opacity=1;
+			   break;
+			   
+			case 1: //User global balance
+			   text.innerHTML = ('Obtaining user global shares. '+"\n"+'This process may take upto one minute...'+'\n' +'\n');
+			   if (xtsUserTx != -1){
+			        document.getElementById("loadingDiv").style.display = "block";
+			        var aux = await xts.userTotalBalance(users[xtsUserTx.selectedIndex-1].userID);
+					document.getElementById("loadingDiv").style.display = "none";
+				    if(aux[0] == 1){
+					    var username = 0;
+						if(xtsUserTx[xtsUserTx.selectedIndex].value == 'AAA') {username = 'Alice';}
+						if(xtsUserTx[xtsUserTx.selectedIndex].value == 'BBB') {username = 'Bob';}
+						if(xtsUserTx[xtsUserTx.selectedIndex].value == 'CCC') {username = 'Charlie';}
+						if(xtsUserTx[xtsUserTx.selectedIndex].value == 'DDD') {username = 'Evie';}
+				        text.innerHTML = ("User: "+username+'\n'+'\n');
+				        for (var a = 1; a<aux.length; a++){
+				             text.innerHTML = text.innerHTML+("Painting: " + aux[a].name + " - Balance: "+aux[a].balance + '\n');
+				        }
+				    }else{text.innerHTML = aux[0];}
+			    } 
+				break;
+			   
+			case 2://Verify number of shares in circulation
+			   if (xtsAsset != -1){
+			      //console.log(xts.checkAssetBalance(assets[xtsAsset.selectedIndex-1].assetID));
+				  text.innerHTML = ('Verifing number of shares in circulation for one painting. '+"\n"+'This process may take upto one minute...'+'\n' +'\n');
+				  text.innerHTML = text.innerHTML+('The data in the local server is  compared VS the MAM data, and the current balance of all the seeds.');
+				  document.getElementById("loadingDiv").style.display = "block";
+				  var aux = await xts.checkAssetBalance(assets[xtsAsset.selectedIndex-1].assetID);
+				  document.getElementById("loadingDiv").style.display = "none";
+				  if(aux[0] == 1){
+				     text.innerHTML = ("**Local server data**"+'\n'+"Asset name: "+aux[1].name+'\n'+
+					                   "Code: "+aux[1].assetID+'\n'+
+									   "ISIN: "+aux[1].isin+'\n'+
+									   "Total shares: "+aux[1].ammount+'\n'+'\n');
+				     text.innerHTML = text.innerHTML+("**MAM data**"+'\n'+'Public ROOT: '+"'"+aux[1].rootMAM+"'"+'\n'+"Asset name: "+aux[2].name+'\n'+
+					                   "Code: "+aux[2].assetID+'\n'+
+									   "ISIN: "+aux[2].isin+'\n'+
+									   "Total shares: "+aux[2].ammount+'\n'+'\n'+
+									   "Account balance total shares: "+aux[1].balance);
+				  }else{text.innerHTML = text.innerHTML+aux[0];}
+			   }
+			   break;
+			   
+			case 3: //Shares distribution among users
+			   if(xtsAsset != -1){
+			      //console.log(xts.sharesDistribution(assets[xtsAsset.selectedIndex-1].assetID));
+				  text.innerHTML = ('Obtaining shares distribution for one painting. '+"\n"+'This process may take upto one minute...'+ '\n' +'\n');
+				  document.getElementById("loadingDiv").style.display = "block";
+				  var aux = await xts.sharesDistribution(assets[xtsAsset.selectedIndex-1].assetID);
+				  document.getElementById("loadingDiv").style.display = "await";
+				  if (aux[0] == 1){
+				      text.innerHTML = ("Painting "+assets[xtsAsset.selectedIndex-1].name+" shares distribution"+"\n"
+					  +"ISIN code: "+assets[xtsAsset.selectedIndex-1].isin+"\n"+"\n");
+				     for(var a=1; a<aux.length; a++){
+					    var username = 0;
+						if(aux[a].user == 'AAA') {username = 'Alice';}
+						if(aux[a].user == 'BBB') {username = 'Bob';}
+						if(aux[a].user == 'CCC') {username = 'Charlie';}
+						if(aux[a].user == 'DDD') {username = 'Evie';}
+					    text.innerHTML = text.innerHTML + (username+" has: "+aux[a].balance+" shares - "+aux[a].percentage+"%"+"\n");
+					 }
+				  }else{text.innerHTML = text.innerHTML+aux[0];}
+			   }
+			   break;
+			   
+			/*case 4: //Add user - Implented in backend
+			   break;
+			   
+			case 5: //Add asset - Implemented in backend
+			   break;
+			*/ 
+			case 4: //Transfer shares
+			   if(xtsUserTx != -1  &&  xtsUserRx != -1  &&  xtsAsset != -1){
+			      text.innerHTML = ('Making shares transfer. '+"\n"+'This process may take upto one minute...'+ '\n' +'\n');
+			      var tx = users[xtsUserTx.selectedIndex-1].userID;
+			      var rx = users[xtsUserRx.selectedIndex-1].userID;
+			      var asset = assets[xtsAsset.selectedIndex-1].assetID;
+			      var value = parseInt(xtsShares[xtsShares.selectedIndex].value, 10);
+				  document.getElementById("loadingDiv").style.display = "block";
+			      var aux = await xts.transferShares(tx, rx, asset, value);
+				  document.getElementById("loadingDiv").style.display = "none";
+				  if (aux[0] != 0){
+				    text.innerHTML = ("Transaction sent to address: "+"'"+aux[0].address+"'"+'\n'+'\n'+
+					assets[xtsAsset.selectedIndex-1].name+" shares sent : "+aux[0].value+'\n'+'\n'+
+					"Bundle: "+"'"+aux[0].bundle+"'"+'\n'+'\n'+
+					"Trunk transaction: "+"'"+aux[0].trunkTransaction+"'"+'\n'+'\n'+
+					"Branch transaction: "+"'"+aux[0].branchTransaction+"'"+'\n'+'\n'+
+					"Hash: "+"'"+aux[0].hash+"'"+'\n'+'\n'+
+					"Nonce: "+"'"+aux[0].nonce+"'"+'\n');					
+				  }else{text.innerHTML = ("ERROR: Transaction failed, please open browser terminal for more detailed information.");}				  
+			   }
+			   break;
+		}//end switch
+	  document.getElementById('button').style.opacity=1;
+	  noMultipleClick = 1;
+	  }//end if
+    } catch(e){
+	      document.getElementById('button').style.opacity=1;
+		  text.innerHTML = (e);
+	      noMultipleClick = 1;
+		  }
+  }//end action()
+	
+	
+     </script>
+  </body>
+</html>
