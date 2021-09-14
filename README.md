@@ -10,7 +10,7 @@ This is a PoC. It is uploaded to GitHub for showcase and educational purposes. I
 Proof that a tokenization model without Smart Contracts is possible
 
 # Video presentation
-* This concept was presented at a IOTA meetup during the World Mobile Conference 2018 at Barcelona
+* This concept was presented at a IOTA meetup during the World Mobile Conference Week 2018 at Barcelona
 * https://youtu.be/6IYXYYToQwI?t=3357
 
 # Architecture
